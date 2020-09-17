@@ -1,0 +1,37 @@
+<div class="container">
+  <br />
+  <br />
+  <!-- MESSAGE SENDER -->
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card msg-container">
+        <div class="card-body">
+          <div class="media">
+            <img class="mr-3 avatar_img" src="../../../assets/images/avatar_{{randomAvatar}}.png" alt="" />
+            <div class="media-body">
+              <div style="display: flex">
+                <textarea name="message" class="text-area-post" [(ngModel)]="message"></textarea>
+              </div>
+              <div class="horizontal-rule"></div>
+              <div style="display: flex">
+                <button type="button" style="float: right" class="btn btn-info btn-msg-send" (click)="postMessage()">
+                  Send
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br />
+  <br />
+
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <!-- MESSAGES-->
+      <app-message *ngFor="let message of data | sortBy:'desc': 'updatedAt'; trackBy: trackByCeatedAt" [message]="message" [avatarId]="randomAvatar"></app-message>
+    </div>
+  </div>
+</div>

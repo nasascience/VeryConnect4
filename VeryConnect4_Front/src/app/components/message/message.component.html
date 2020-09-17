@@ -1,0 +1,37 @@
+<div class="card msg-container">
+  <div class="card-body">
+    <div class="media">
+      <img class="mr-3 avatar_img" src="../../../assets/images/avatar_{{message.avatarId}}.png" alt=""/>
+      <div class="media-body">
+        <h5 class="mt-0">{{message.userName}}</h5>
+        {{message.body}}
+      </div>
+    </div>
+  </div>
+  <div class="horizontal-rule"></div>
+  <!-- INPUT TEXT SEND  -->
+  <div class="card-body msg-reply-input">
+    <div class="media">
+      <div class="media-body">
+        <div style="display: flex">
+          <textarea name="message" class="text-area-post" [(ngModel)]="newReply"></textarea>
+        </div>
+        <div class="horizontal-rule"></div>
+        <div style="display: flex">
+          <button type="button" style="float: right" class="btn btn-info btn-msg-send" (click)="postReply()">
+            Send
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REPLIES -->
+  <div class="media msg-reply" *ngFor="let reply of message.replies | sortBy:'desc': 'updatedAt'; trackBy: trackByCeatedAt">
+    <div class="horizontal-rule"></div>
+    <img class="mr-3 avatar_img" src="../../../assets/images/avatar_{{reply.avatarId}}.png" alt=""/>
+    <div class="media-body">
+      <h5 class="mt-0">{{reply.userName}}</h5>
+      {{reply.body}}
+    </div>
+  </div>
