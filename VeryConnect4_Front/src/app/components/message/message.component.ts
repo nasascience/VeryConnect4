@@ -51,6 +51,9 @@ export class MessageComponent implements OnInit {
     if(this.newReply == ""){
       this.alertsSvc.showDanger(`Please make sure you have written a reply`)
       return
+    }else if(this.localUserName){
+      this.alertsSvc.showDanger(`Please make sure you have entered a name`)
+      return
     }
 
     this.loadingSvc.showLoader()

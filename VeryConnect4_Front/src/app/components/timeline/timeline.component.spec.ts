@@ -26,8 +26,6 @@ describe('TimelineComponent', () => {
     });
     fixture = TestBed.createComponent(TimelineComponent)
     component = fixture.componentInstance;
-    //component = TestBed.get(TimelineService);
-
   });
 
   it('should create', () => {
@@ -56,28 +54,4 @@ describe('TimelineComponent', () => {
   it('getAvatarId should return a number', () => {
     expect(typeof component.getAvatarId()).toEqual('number');
   });
-
-  // it('Message textArea should be visible', () =>{
-  //   fixture.detectChanges();
-  //   const compiled = fixture.nativeElement;
-  //   expect(compiled.querySelector('#toolbar').style.display == 'none').toBeFalse()
-  // })
-
-  // it('Send button should be visible and enabled', () =>{
-
-  //   let sendBtn: HTMLElement = fixture.nativeElement.querySelector('.btn-msg-send')
-  //   fixture.detectChanges()
-
-  //    expect(sendBtn.style.display == 'none').toBeFalse()
-  //    expect(sendBtn).toBeTruthy()
-  // })
-
-  // it('alerts should be hidden by default', () => {
-  //   const fixture = TestBed.createComponent(TimelineComponent);
-  //   fixture.detectChanges();
-  //   const compiled = fixture.nativeElement;
-  //   expect(compiled.querySelector('#toolbar').style.display == 'none').toBeFalse()
-  //   expect(compiled.querySelector('#danger-alert').style.display == 'none').not.toBeFalse();
-  // });
-
 });

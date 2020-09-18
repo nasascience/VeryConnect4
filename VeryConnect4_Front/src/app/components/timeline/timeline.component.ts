@@ -38,8 +38,12 @@ export class TimelineComponent implements OnInit {
   }
 
   postMessage() {
+    // Simple Validations
     if (this.message == "") {
       this.alertsSvc.showDanger(`Please make sure you have written a message`)
+      return
+    }else if(this.localUserName){
+      this.alertsSvc.showDanger(`Please make sure you have entered a name`)
       return
     }
 
