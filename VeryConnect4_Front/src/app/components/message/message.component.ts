@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TimelineService } from '../../services/timeline.service'
 import { IMessage, IReplyRequest } from '../../interfaces/message'
 import { SortByPipe } from '../../pipes/sort-by.pipe'
 import { FriendlyDatePipe } from '../../pipes/friendly-date.pipe'
+import { TimelineService } from '../../services/timeline.service'
 import { AlertsService } from '../../services/alerts.service'
 import { LoadingService } from '../../services/loading.service'
 
@@ -43,12 +43,16 @@ export class MessageComponent implements OnInit {
     private loadingSvc: LoadingService) { }
 
   ngOnInit(): void {
-    console.log("message on init", this.message.id)
     this.timelineSvc.currentUserName.pipe().subscribe(u => { this.localUserName = u })
     this.timelineSvc.currentMessages.pipe().subscribe(d => {this.allMessagesRef = d})
   }
 
   postReply() {
+    if(this.newReply == ""){
+      this.alertsSvc.showDanger(`Please make sure you have written a reply`)
+      return
+    }
+
     this.loadingSvc.showLoader()
 
     let newReplyObj: IMessage = {

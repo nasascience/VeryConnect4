@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http'
 import { Observable, BehaviorSubject, Subscriber } from 'rxjs'
 import { IMessage, IReplyRequest } from '../interfaces/message'
 import { LoadingService } from '../services/loading.service'
+import { environment } from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +11,11 @@ import { LoadingService } from '../services/loading.service'
 
 export class TimelineService {
   private fakeData: IMessage[] = []
-  baseUrl: string = 'http://localhost:1337/'
+  baseUrl: string = environment.baseUrl
+
   constructor(
     private http: HttpClient,
-    private loadingSvc: LoadingService,
-    /*@Inject('BASE_URL') private baseUrl: string*/) { }
+    private loadingSvc: LoadingService) { }
 
   private userNameSource = new BehaviorSubject<string>("Dannan Solis")
   currentUserName = this.userNameSource.asObservable()

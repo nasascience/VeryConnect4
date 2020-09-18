@@ -1,25 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { NavMenuComponent } from './nav-menu.component';
+
+// Services
+import { TimelineService } from '../../services/timeline.service'
 
 describe('NavMenuComponent', () => {
   let component: NavMenuComponent;
-  let fixture: ComponentFixture<NavMenuComponent>;
+  const timelineSvc = new TimelineService(null, null);
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ NavMenuComponent ]
-    })
-    .compileComponents();
+    component = new NavMenuComponent(timelineSvc);
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(NavMenuComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
 
-  it('should create', () => {
+  it('should create component', () => {
     expect(component).toBeTruthy();
   });
 });
