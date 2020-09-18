@@ -80,3 +80,16 @@ margin: 0px auto;
     right: 0;
     width: 400px;
 }
+
+.my-Spinner{
+  position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.date-style{
+  color:#949494;
+}

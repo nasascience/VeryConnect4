@@ -1,10 +1,10 @@
 <div class="card msg-container">
-  <div class="card-body">
+  <div class="card-body" style="padding-bottom: 0px;">
     <div class="media">
       <img class="mr-3 avatar_img" src="../../../assets/images/avatar_{{message.avatarId}}.png" alt=""/>
       <div class="media-body">
-        <h5 class="mt-0">{{message.userName}}</h5>
-        {{message.body}}
+        <h5 class="mt-0 message-title">{{message.userName}}</h5> &#8226; <span class="mt-0 message-title date-style">{{message.createdAt | FriendlyDatePipe}}</span>
+        <p>{{message.body}}</p>
       </div>
     </div>
   </div>
@@ -27,11 +27,11 @@
   </div>
 
   <!-- REPLIES -->
-  <div class="media msg-reply" *ngFor="let reply of message.replies | sortBy:'desc': 'updatedAt'; trackBy: trackByCeatedAt">
+  <div class="media msg-reply" *ngFor="let reply of message.replies | sortBy:'desc': 'createdAt'; trackBy: trackByCeatedAt">
     <div class="horizontal-rule"></div>
     <img class="mr-3 avatar_img" src="../../../assets/images/avatar_{{reply.avatarId}}.png" alt=""/>
     <div class="media-body">
-      <h5 class="mt-0">{{reply.userName}}</h5>
-      {{reply.body}}
+      <h5 class="mt-0 message-title">{{reply.userName}}</h5 > &#8226; <span class="mt-0 message-title date-style" >{{reply.createdAt | FriendlyDatePipe}}</span>
+        <p>{{reply.body}}</p>
     </div>
   </div>

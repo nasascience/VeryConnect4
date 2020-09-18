@@ -3,6 +3,8 @@ import { TimelineService } from '../../services/timeline.service'
 import { AlertsService} from '../../services/alerts.service'
 import { IMessage } from '../../interfaces/message'
 import { SortByPipe } from '../../pipes/sort-by.pipe'
+import { LoadingService } from '../../services/loading.service'
+
 declare var $: any
 
 @Component({
@@ -15,7 +17,10 @@ export class TimelineComponent implements OnInit {
   randomAvatar: number = 1
   message: string = '';
   data: IMessage[] = []
-  constructor(private timelineSvc: TimelineService, private alertsSvc: AlertsService) { }
+  constructor(
+    private timelineSvc: TimelineService,
+    private alertsSvc: AlertsService,
+    private loadingSvc: LoadingService) { }
 
   ngOnInit(): void {
     this.timelineSvc.currentUserName.pipe().subscribe(u => {this.localUserName = u})
@@ -25,14 +30,7 @@ export class TimelineComponent implements OnInit {
   }
 
   fetchData() {
-    this.timelineSvc.getLocalMessages()
-
-
-      // this.timelineSvc.getMessages()
-      // .pipe()
-      // .subscribe(data => {
-      //   console.log("real data", data)
-      // })
+     this.timelineSvc.getMessages()
   }
 
   trackByCeatedAt(index: number, message: IMessage) {
@@ -40,6 +38,8 @@ export class TimelineComponent implements OnInit {
   }
 
   postMessage() {
+    this.loadingSvc.showLoader()
+
     let newMessage: IMessage = {
        userName: this.localUserName,
        body: this.message,
@@ -48,15 +48,19 @@ export class TimelineComponent implements OnInit {
        avatarId: this.randomAvatar
     }
 
-    this.data.push(newMessage)
-    this.timelineSvc.saveFakeMessages(this.data)
+   this.timelineSvc.sendMessage(newMessage).pipe()
+   .subscribe(data => {
+    this.data.push(data)
+    this.timelineSvc.updateMessagesList(this.data)
 
-    // clear TextArea
+    // Clear TextArea
     this.message = ""
-
-    console.log(this.data)
-    //this.message = ""
-    this.alertsSvc.showSuccess("Your message have been posted.")
+    this.alertsSvc.showSuccess("Your message has been posted.")
+   },error => {
+    this.alertsSvc.showDanger(`Error: ${error.message}`)
+   }, ()=>{
+     this.loadingSvc.hideLoader()
+   })
   }
 
   getAvatarId() {

@@ -11,6 +11,7 @@ import { TimelineComponent } from './components/timeline/timeline.component';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 import { MessageComponent } from './components/message/message.component';
 import { SortByPipe } from './pipes/sort-by.pipe';
+import { FriendlyDatePipe } from './pipes/friendly-date.pipe';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { SortByPipe } from './pipes/sort-by.pipe';
     NavMenuComponent,
     MessageComponent,
     SortByPipe,
+    FriendlyDatePipe,
   ],
   imports: [
     BrowserModule,

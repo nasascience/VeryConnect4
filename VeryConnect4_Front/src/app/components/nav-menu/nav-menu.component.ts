@@ -8,7 +8,7 @@ import { TimelineService } from '../../services/timeline.service'
 })
 
 export class NavMenuComponent implements OnInit {
-  localUserName: string = "Unnamed"
+  localUserName: string = "Dannan Solis"
   avatarId: number = 1
   constructor(private timelineSvc: TimelineService) { }
 

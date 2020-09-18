@@ -11,10 +11,10 @@ module.exports = {
   tableName: 'messages',
   attributes: {
     // parentMessageId: { type: 'string', columnName: 'parentMessageId' },
-    userName: { type: 'string', required: true },
-    body: { type: 'string', required: true },
-    avatarId: { type: 'string', required: true },
-    replies: Messages[{}]
+   // userName: { type: 'string', required: true },
+   // body: { type: 'string', required: true },
+   // avatarId: { type: 'string', required: true },
+   // replies: { type: mongoose.Schema.Types.ObjectId, ref: 'messages', required: false, allowNull: true } //,Messages[{}]
   },
 
 };
